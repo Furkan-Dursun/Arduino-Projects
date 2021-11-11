@@ -15,3 +15,5 @@ Enc28j60'ı ethernet ile bir modeme bağlayın, arduinoyuda bilgisayarınıza ba
 ![i1](https://user-images.githubusercontent.com/68166850/141261155-cc3e428c-b1d7-4856-b4ac-5bad8161bbc1.jpeg)
 
 ![1](https://user-images.githubusercontent.com/68166850/141261215-eaafaa03-5aaa-4ca1-825d-fdecc32bc608.jpeg)
+
+![r](https://user-images.githubusercontent.com/68166850/141261774-d478a1f3-b926-4e7f-93d7-5055723706e9.jpeg)
