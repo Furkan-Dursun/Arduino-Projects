@@ -14,9 +14,7 @@ BufferFiller bfill;
 #define CS_PIN       10
 
 #define RELAIS_1     8
-#define RELAIS_2     9
 bool relais1Status = false;
-bool relais2Status = false;
 
 const char http_OK[] PROGMEM =
 "HTTP/1.0 200 OK\r\n"
@@ -36,13 +34,10 @@ void homePage()
 {
   bfill.emit_p(PSTR("$F"
     "<title>Arduino Relais Webserver</title>"
-    "Relais 1: <a href=\"?relais1=$F\">$F</a><br />"
-    "Relais 2: <a href=\"?relais2=$F\">$F</a>"),
+    "Relais 1: <a href=\"?relais1=$F\">$F</a><br />",
   http_OK,
   relais1Status?PSTR("off"):PSTR("on"),
-  relais1Status?PSTR("<font color=\"green\"><b>ON</b></font>"):PSTR("<font color=\"red\">OFF</font>"),
-  relais2Status?PSTR("off"):PSTR("on"),
-  relais2Status?PSTR("<font color=\"green\"><b>ON</b></font>"):PSTR("<font color=\"red\">OFF</font>"));
+  relais1Status?PSTR("<font color=\"green\"><b>ON</b></font>"):PSTR("<font color=\"red\">OFF</font>");
 }
 
 void setup()
@@ -50,7 +45,6 @@ void setup()
   Serial.begin(115200);
 
   pinMode(RELAIS_1, OUTPUT);
-  pinMode(RELAIS_2, OUTPUT);
 
   if (ether.begin(BUFFER_SIZE, mymac, CS_PIN) == 0)
     Serial.println("Cannot initialise ethernet.");
@@ -72,7 +66,6 @@ void setup()
 void loop()
 {
   digitalWrite(RELAIS_1, relais1Status);
-  digitalWrite(RELAIS_2, relais2Status);
 
   delay(1);   // necessary for my system
   word len = ether.packetReceive();   // check for ethernet packet
