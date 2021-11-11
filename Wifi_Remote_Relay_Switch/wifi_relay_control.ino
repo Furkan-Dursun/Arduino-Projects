@@ -91,11 +91,13 @@ void loop()
         // Return home page
         homePage();
       }
-      else if(strstr((char *)Ethernet::buffer + pos, "GET /ON") != 0) {
-        relais1Status = true;
+      else if (strncmp("?relais1=on ", data, 12) == 0) {
+        relais1Status = true;        
+        bfill.emit_p(http_Found);
       }
-      else if(strstr((char *)Ethernet::buffer + pos, "GET /OFF") != 0) {
-        relais1Status = false;
+      else if (strncmp("?relais1=off ", data, 13) == 0) {
+        relais1Status = false;        
+        bfill.emit_p(http_Found);
       }
       else {
         // Page not found
