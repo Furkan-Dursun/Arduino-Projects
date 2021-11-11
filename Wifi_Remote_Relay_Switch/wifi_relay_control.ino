@@ -1,6 +1,6 @@
 /*
  * Requirements: Arduino, Enc28j60, Relay
- *  Author: Guillaume Carriere - guillaume.carriere@gmail.com , Furkan Dursun - furkandursnn@gmail.com
+ *  Author: Guillaume Carriere - guillaume.carriere@gmail.com, Furkan Dursun - furkandursnn@gmail.com
  */
 #include <EtherCard.h>
 
@@ -14,6 +14,7 @@ BufferFiller bfill;
 #define CS_PIN       10
 
 #define RELAIS_1     8
+
 bool relais1Status = false;
 
 const char http_OK[] PROGMEM =
@@ -34,10 +35,10 @@ void homePage()
 {
   bfill.emit_p(PSTR("$F"
     "<title>Arduino Relais Webserver</title>"
-    "Relais 1: <a href=\"?relais1=$F\">$F</a><br />",
+    "Relais 1: <a href=\"?relais1=$F\">$F</a><br />"),
   http_OK,
   relais1Status?PSTR("off"):PSTR("on"),
-  relais1Status?PSTR("<font color=\"green\"><b>ON</b></font>"):PSTR("<font color=\"red\">OFF</font>");
+  relais1Status?PSTR("<font color=\"green\"><b>ON</b></font>"):PSTR("<font color=\"red\">OFF</font>"));
 }
 
 void setup()
@@ -45,6 +46,7 @@ void setup()
   Serial.begin(115200);
 
   pinMode(RELAIS_1, OUTPUT);
+ 
 
   if (ether.begin(BUFFER_SIZE, mymac, CS_PIN) == 0)
     Serial.println("Cannot initialise ethernet.");
